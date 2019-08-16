@@ -17,13 +17,13 @@ class ProductRepository
     .toList();
   }
 
-  Future<List<ProductDetailsModel>> getByCategory(String category) async 
+  Future<List<ProductListItemModel>> getByCategory(String category) async 
   {
     var url = "${Settings.apiUrl}/v1/categories/$category/products";
     
     Response response = await Dio().get(url);
     
-    return (response.data as List).map((course) => ProductDetailsModel.fromJson(course)).toList();
+    return (response.data as List).map((course) => ProductListItemModel.fromJson(course)).toList();
   }
 
   Future<ProductDetailsModel> get(String tag) async 
