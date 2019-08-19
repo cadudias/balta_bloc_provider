@@ -1,0 +1,29 @@
+import 'package:balta_bloc_providers/shared/widgets/shared/progress-indicator.widget.dart';
+import 'package:flutter/cupertino.dart';
+
+// toda requisição http passa pelo loader
+class Loader extends StatelessWidget {
+  final object;
+  final Function callback;
+
+  Loader({@required this.object, @required this.callback});
+
+  @override
+  Widget build(BuildContext context) {
+    // nao carregou nada ainda
+    if (object == null) {
+      return Center(
+        child: GenericProgressIndicator(),
+      );
+    }
+
+    // ja carregou mas nao retornou nenhum item
+    if (object.length)
+      return Center(
+        child: Text("Nenhum item encontrado"),
+      );
+
+    // se retornou alguma coisa carrega a função
+    return callback();
+  }
+}
