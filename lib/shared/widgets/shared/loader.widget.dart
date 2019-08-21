@@ -10,20 +10,16 @@ class Loader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // nao carregou nada ainda
-    if (object == null) {
+    if (object == null)
       return Center(
         child: GenericProgressIndicator(),
       );
-    }
 
-    // ja carregou mas nao retornou nenhum item
-    if (object.length)
+    if (object.length == 0)
       return Center(
         child: Text("Nenhum item encontrado"),
       );
 
-    // se retornou alguma coisa carrega a função
     return callback();
   }
 }

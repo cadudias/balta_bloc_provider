@@ -1,16 +1,19 @@
-import 'package:balta_bloc_providers/blocs/home.bloc.dart';
+
+import 'package:balta_bloc_providers/shared/widgets/category/category-list.widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+//import 'package:shopping/blocs/cart.bloc.dart';
+import 'package:balta_bloc_providers/blocs/home.bloc.dart';
+//import 'package:shopping/blocs/theme.bloc.dart';
+//import 'package:shopping/blocs/user.bloc.dart';
+//import 'package:shopping/ui/android/pages/tabs.page.dart';
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-      // a aplicação passa pelo multi providers e deixa o home bloc na memoria
-      // toda a vez que o home bloc for usado ele vai usar a instancia que foi criada
       providers: [
         ChangeNotifierProvider<HomeBloc>.value(
           value: HomeBloc(),
@@ -24,11 +27,49 @@ class MyApp extends StatelessWidget {
 class Main extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    //final ThemeBloc bloc = Provider.of<ThemeBloc>(context);
+
     return MaterialApp(
-      title: "Shopping cart",
+      title: 'Shopping Cart',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+      //theme: bloc.theme,
+      // home: TabsPage(),
+      home: DefaultTabController(
+        length: 3,
+        child: HomePage(),
+      ),
+    );
+  }
+}
+
+class HomePage extends StatelessWidget {
+  
+  @override
+  Widget build(BuildContext context) {
+    
+    final HomeBloc bloc = Provider.of<HomeBloc>(context);
+
+    return Scaffold(
+      body: Padding(
+        padding: EdgeInsets.all(10),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            SizedBox(
+              height: 60,
+            ),
+            Text(
+              "Categorias",
+              style: Theme.of(context).textTheme.headline,
+            ),
+            SizedBox(
+              height: 60,
+            ),
+            CategoryList(
+              categories: bloc.categories
+            )
+          ],
+        ),
       ),
     );
   }

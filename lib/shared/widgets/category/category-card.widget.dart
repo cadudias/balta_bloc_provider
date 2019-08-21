@@ -37,7 +37,7 @@ class CategoryCard extends StatelessWidget {
         child:
             Image.asset("assets/categories/${Settings.theme}/${item.tag}.png"),
         onPressed: () {
-          bloc.changeCategory(item.tag);
+          //bloc.changeCategory(item.tag);
         },
       ),
     );
