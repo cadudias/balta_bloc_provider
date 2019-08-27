@@ -1,5 +1,6 @@
 
 import 'package:balta_bloc_providers/shared/widgets/category/category-list.widget.dart';
+import 'package:balta_bloc_providers/shared/widgets/product/product-list.widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 //import 'package:shopping/blocs/cart.bloc.dart';
@@ -56,17 +57,23 @@ class HomePage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             SizedBox(
-              height: 60,
+              height: 20,
             ),
             Text(
               "Categorias",
               style: Theme.of(context).textTheme.headline,
             ),
             SizedBox(
-              height: 60,
+              height: 20,
             ),
             CategoryList(
               categories: bloc.categories
+            ),
+             SizedBox(
+              height: 20,
+            ),
+             ProductList(
+              products: bloc.products
             )
           ],
         ),
